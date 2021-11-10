@@ -1,9 +1,10 @@
 import React,{useState} from "react";
 import Card from "../UI/Card";
 import "./UsersList.css"
-import DelButton from "./DelButton";
-// import DelModalWindow from "./DelModalWindow";
+// import DelButton from "./DelButton";
+import DelModalWindow from "./DelModalWindow";
 import Button from "../UI/Button";
+// import DelModalWindow from "./DelModalWindow";
 
 const UsersList = props => {
     const [modalWin,setModalWin] = useState("false")
@@ -17,18 +18,12 @@ const UsersList = props => {
                 setModalWin("false")
             }
         }
-            return <div className="background">
-                    <div className="ModalWindow">
-                    <p>Do you agree with the deletion?</p>
-                    <p>{`${text} ${number}(years old)`}</p>
-                    <div className="list">
-                    <DelButton  id={Id} onDeleteHundler={onDeleteHundler} onDelete={props.onDeleteEl}>Delete</DelButton>
-                    <Button onClick={()=> {
-                        setModalWin("false")
-                    }}>Cancel</Button>
-                    </div>
-                </div>
-            </div>
+            return <DelModalWindow 
+            onDelete={props.onDeleteEl} 
+            text={text} 
+            number={number} 
+            id={Id} 
+            onDeleteHundler={onDeleteHundler}/>
     }
     return (
         <Card className="users">
